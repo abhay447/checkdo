@@ -1,6 +1,5 @@
 package com.goseeky.checkdo.repository;
 
-import android.app.ProgressDialog;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.content.Context;
@@ -72,8 +71,8 @@ public class DataRepository {
         return mDatabase.baseDao().getTaskByIdAsync(taskid);
     }
 
-    public LiveData<FolderBO> loadFolder(final int folderid) {
-        return mDatabase.baseDao().getFolderByIdAsync(folderid);
+    public List<FolderBO> loadFolder(final int folderid) {
+        return mDatabase.baseDao().getFolderById(folderid);
     }
 
 
@@ -229,6 +228,39 @@ public class DataRepository {
 
     public void setRootFolder(FolderActivity folderActivity){
         new getRootFolderAsync(folderActivity,mDatabase.baseDao()).execute();
+    }
+
+    private class loadParentFolderAsync extends AsyncTask<Void, Void, FolderBO> {
+
+        private BaseDao mAsyncTaskDao;
+        private FolderActivity caller;
+
+        loadParentFolderAsync(FolderActivity folderActivity, BaseDao dao) {
+            mAsyncTaskDao = dao;
+            caller = folderActivity;
+        }
+
+        @Override
+        protected FolderBO doInBackground(Void... voids) {
+            List<FolderBO> folderBOS = mAsyncTaskDao.getFolderById(caller.getCurrentFolder().getFolderParent());
+            if(folderBOS.size() > 0){
+                return folderBOS.get(0);
+            }
+            return mAsyncTaskDao.getRootFolder().get(0);
+        }
+
+        @Override
+        protected void onPostExecute(FolderBO folderBO) {
+            //do stuff
+            caller.changeFolder(folderBO);
+            return;
+        }
+
+    }
+
+
+    public void loadParentFolder(FolderActivity folderActivity) {
+        new loadParentFolderAsync(folderActivity,mDatabase.baseDao()).execute();
     }
 
     public void deleteFolder(FolderBO folderBO){

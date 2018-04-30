@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -78,7 +79,7 @@ public class FolderActivity extends AppCompatActivity implements AdapterView.OnI
         startActivityForResult(intent, REQ_ADD_OR_EDIT_TASK);
     }
 
-    private void changeFolder(FolderBO folderBO) {
+    public void changeFolder(FolderBO folderBO) {
         taskViewModel.getTaskRepository().changeFolder(folderBO);
         taskViewModel.getTaskRepository().mObservableTasks.observe(this, new Observer<List<TaskBO>>() {
             @Override
@@ -96,6 +97,7 @@ public class FolderActivity extends AppCompatActivity implements AdapterView.OnI
 
         gridAdapter.reloadData();
         currentFolder = folderBO;
+        setTitle(folderBO.getFolderDesc());
     }
 
     @Override
@@ -149,6 +151,19 @@ public class FolderActivity extends AppCompatActivity implements AdapterView.OnI
                 break;
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(currentFolder.getFolderDesc().equals("/")) {
+            super.onBackPressed();
+        }else{
+            taskViewModel.getTaskRepository().loadParentFolder(this);
+        }
+    }
+
+    public FolderBO getCurrentFolder() {
+        return currentFolder;
     }
 }
 
