@@ -9,6 +9,7 @@ import java.sql.Date;
 
 /**
  * Created by abhay on 28/4/18.
+ * BO for tasks
  */
 
 @Entity(tableName = "TASKS")

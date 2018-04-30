@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by abhay on 30/4/18.
+ * Base Processor for date time conversion from plain text
  */
 
 public abstract class BaseProcessor {
@@ -20,12 +21,12 @@ public abstract class BaseProcessor {
         process();
     }
 
-    public List<String> getTokens() {
+    List<String> getTokens() {
         return tokens;
     }
 
 
-    public List<Float> getVals(){return this.vals;};
+    public List<Float> getVals(){return this.vals;}
 
     protected abstract void process();
 

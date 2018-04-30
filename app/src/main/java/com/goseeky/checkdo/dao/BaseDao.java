@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by abhay on 28/4/18.
+ * Dao interface for RoomDB
  */
 @Dao
 public interface BaseDao {

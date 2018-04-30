@@ -6,10 +6,11 @@ import java.util.Map;
 
 /**
  * Created by abhay on 1/5/18.
+ * Processor to determine month of year
  */
 
 public class MonthProcessor extends BaseProcessor {
-    Map<String,Integer> monthMap;
+    private Map<String,Integer> monthMap;
     public MonthProcessor(String message) {
         super(message);
     }

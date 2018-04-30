@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * Created by abhay on 28/4/18.
+ * Adapter for task and folder grid
  */
 
 public class GridAdapter extends BaseAdapter {

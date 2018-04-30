@@ -2,19 +2,18 @@ package com.goseeky.checkdo.DateContextProcessor;
 
 import com.goseeky.checkdo.util.EnglishNumberToWords;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by abhay on 1/5/18.
+ * Processor to get time of day
  */
 
 public class TimeProcessor extends BaseProcessor {
 
 
-    Map<String,Float> timeMap;
+    private Map<String,Float> timeMap;
 
     public TimeProcessor(String message) {
         super(message);
@@ -22,10 +21,10 @@ public class TimeProcessor extends BaseProcessor {
 
     @Override
     protected void process() {
-        List<String> timePrefixes = new ArrayList<>();
-        timePrefixes.add("by");
-        timePrefixes.add("at");
-        timePrefixes.add("before");
+//        List<String> timePrefixes = new ArrayList<>();
+//        timePrefixes.add("by");
+//        timePrefixes.add("at");
+//        timePrefixes.add("before");
 
         for(int i=1;i<getTokens().size();i++){
             if(timeMap.containsKey(getTokens().get(i))

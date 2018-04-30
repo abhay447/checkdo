@@ -14,6 +14,7 @@ import com.goseeky.checkdo.dao.BaseDao;
 
 /**
  * Created by abhay on 28/4/18.
+ * Class extending roomDB for android
  */
 @Database(entities = {FolderBO.class, TaskBO.class}, version = 1)
 public abstract class TaskRoomDatabase extends RoomDatabase {

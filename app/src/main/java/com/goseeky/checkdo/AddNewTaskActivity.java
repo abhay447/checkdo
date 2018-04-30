@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.goseeky.checkdo.util.DateGenUtil;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AddNewTaskActivity extends AppCompatActivity implements View.OnClickListener {
 

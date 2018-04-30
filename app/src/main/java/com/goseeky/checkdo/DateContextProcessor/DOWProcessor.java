@@ -1,7 +1,5 @@
 package com.goseeky.checkdo.DateContextProcessor;
 
-import android.util.Log;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +21,8 @@ public class DOWProcessor extends BaseProcessor {
 
     @Override
     protected void process() {
-        int thisMonth = cal.get(Calendar.MONTH);
+        int thisMonth;
+        thisMonth = cal.get(Calendar.MONTH);
 
         for(int i=0;i<getTokens().size();i++){
             cal.setTime(new Date());

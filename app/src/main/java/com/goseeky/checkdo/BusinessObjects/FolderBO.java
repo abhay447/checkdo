@@ -10,6 +10,7 @@ import java.util.Date;
 
 /**
  * Created by abhay on 28/4/18.
+ * BO for folders
  */
 @Entity(
         tableName = "FOLDERS",
