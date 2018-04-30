@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.goseeky.checkdo.util.DateGenUtil;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,7 +29,7 @@ public class AddNewTaskActivity extends AppCompatActivity implements View.OnClic
 
     private Integer task_id;
     private Integer parent_id;
-    Date deadline;
+    String deadline;
     String description;
     int priority;
 
@@ -127,8 +129,9 @@ public class AddNewTaskActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void populateDetails() {
-        deadline = new Date();
         description = taskDesc.getText().toString();
+        deadline = new DateGenUtil(description).getDateTimeString();
+        taskTime.setText(deadline);
         priority = taskPriority.getProgress();
     }
 }
